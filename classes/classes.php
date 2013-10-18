@@ -11,7 +11,11 @@ class cpage {
 		public function __destruct() {
 
 		}
-
+                
+                public function setContent($content) {
+			$this->content = $content;
+		}
+                
 		public function render() {
 			echo "<H1>{$this->title}</H1>";
 			foreach($this->content as $cont){
@@ -19,9 +23,7 @@ class cpage {
 			}
 		}
 
-		public function setContent($content) {
-				$this->content = $content;
-		}
+		
 	}	
 
 class csite {
@@ -79,7 +81,7 @@ class Controller {
                 break;
             
             case "showquote":
-                include './apps/quotes/showquotes.php';
+                include 'apps/quotes/showquotes.php';
                 return $content;
                 break;
             
