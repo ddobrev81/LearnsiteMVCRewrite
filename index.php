@@ -1,5 +1,6 @@
 <?php #index.php
 session_start();
+error_reporting(E_ALL ^ E_NOTICE); 
 
 include 'classes/classes.php';
 include 'includes/stdlib.php';
@@ -14,13 +15,7 @@ if(!isset($_GET['page'])) {
     $site->setPage($page);
 
     $content = Controller::router($_GET['page']);
-
     $page->setContent($content);
     $site->render();
-//} else {
-  //  $url = absolute_url();
-    //header('HTTP/1.1 303 See Other');
-    //header("Location: $url");
-    //exit;
-//}
+
 ?>

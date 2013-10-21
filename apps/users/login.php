@@ -1,13 +1,14 @@
 <?php #login.php
 
-include('stdlib.php');
-$site = new csite();
+include('includes/stdlib.php');
+
+/*$site = new csite();
 initialise_site($site);
 $page = new cpage("Login");
-$site->setPage($page);
+$site->setPage($page);*/
 
 if( isset($_POST['submitted'])) {
-		require_once('dbc.php');
+		require_once('includes/dbc.php');
 		list($check, $data) = check_login($pdo, $_POST['email'], $_POST['pass']);
 		if($check) {
 				#setcookie('user_id', $data['user_id'], time()+3600, '/', '', 0, 0);
@@ -51,6 +52,6 @@ $content[] ='
 <p>Google Login<a href="login_process.php">here.</a><p>
 ';
 
-$page->setContent($content);
-$site->render();
+/*$page->setContent($content);
+$site->render();*/
 ?>

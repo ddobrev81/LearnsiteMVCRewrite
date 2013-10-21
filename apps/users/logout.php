@@ -2,12 +2,12 @@
 
 session_start();
 
-include('stdlib.php');
+include('invludes/stdlib.php');
 
-$site = new csite();
+/*$site = new csite();
 initialise_site($site);
 $page = new cpage("Logout");
-$site->setPage($page);
+$site->setPage($page);*/
 
 
 if(!isset($_SESSION['user_id'])) {
@@ -23,7 +23,7 @@ if(!isset($_SESSION['user_id'])) {
 }
 $content[] = "<p>You are now logged out!</p>";
 
-$page->setContent($content);
-$site->render();
+/*$page->setContent($content);
+$site->render();*/
 
 ?>
