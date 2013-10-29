@@ -1,12 +1,5 @@
 <?php #password.php
 
-include('stdlib.php');
-$site = new csite();
-initialise_site($site);
-
-$page = new cpage("Change Your Password");
-$site->setPage($page);
-
 
 if( isset($_POST['submitted'])) {
 	if( empty($_POST['email'])) {
@@ -28,7 +21,7 @@ if( isset($_POST['submitted'])) {
 	} else {
 		$content[]='You didnt enter a password!';
 	}
-	include ('dbc.php');
+	require_once './includes/dbc.php';
 	if (empty($errors)) { 
 		$q = "SELECT user_id FROM users WHERE (email=:e AND pass=SHA1(:p))";
 		$ps = $pdo->prepare($q);
@@ -53,8 +46,8 @@ if( isset($_POST['submitted'])) {
 		}
 	}
 }
-$content[] = <<<HTML
-<form action="password.php" method="post">
+$content[] = '
+<form action="index.php?page=password" method="post">
 <p><input type="text" name="email" size="30" placeholder="Email Address" maxlength="80" /> </p>
 <p><input type="password" name="pass" size="30" placeholder="Current Password" maxlength="20" /></p>
 <p><input type="password" name="pass1" size="30" placeholder="New Password" maxlength="20" /></p>
@@ -62,9 +55,4 @@ $content[] = <<<HTML
 <p><input type="submit" name="submit" value="Change Password" /></p>
 <input type="hidden" name="submitted" value="TRUE" />
 </form>
-HTML;
-
-$page->setContent($content);
-$site->render();
-
-?>
+';

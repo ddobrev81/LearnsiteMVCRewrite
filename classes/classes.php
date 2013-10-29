@@ -80,18 +80,18 @@ class Controller {
                 return $content;
                 break;
             
-            case "showquote":
+            case "showquotes":
                 include 'apps/quotes/showquotes.php';
                 return $content;
                 break;
             
             case "addquote":
-                include './apps/quotes/addquotes.php';
+                include './apps/quotes/addquote.php';
                 return $content;
                 break;
             
             case "underconstruction":
-                include './apps/undercontruction/undercontruction.php';
+                include './apps/underconstruction/underconstruction.php';
                 return $content;
                 break;
             
@@ -136,7 +136,8 @@ class Controller {
                 break;
             
             default:
-                //something something
+                include 'apps/main/main.php';
+                return $content;
                 break;
         }
         

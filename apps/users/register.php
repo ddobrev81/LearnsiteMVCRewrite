@@ -1,12 +1,5 @@
 <?php # register.php
 
-include 'stdlib.php';
-
-$site = new csite();
-initialise_site($site);
-$page = new cPage("Register");
-$site->setPage($page);
-
 if(isset($_POST['submitted']))	{	
     if(empty($_POST['first_name'])) {
         $content[]="You forgot to enter your first name.\n";
@@ -33,7 +26,7 @@ if(isset($_POST['submitted']))	{
         $content[] = "You forgot to enter your password!\n";
     }
 if(empty($content)) {
-    require_once('dbc.php');
+    require_once('./includes/dbc.php');
     $q = "INSERT INTO users (first_name, last_name, email, pass, registration_date) VALUES (:fn, :ln, :e, SHA1(:p), NOW() )";
     $ps = $pdo->prepare($q);
     $params = array(
@@ -53,8 +46,8 @@ if(empty($content)) {
     }
 }
 
-$content[] = <<<HTML
-<form action="register.php" method="post">
+$content[] = '
+<form action="index.php?page=register" method="post">
 <p><input type="text" name="first_name" placeholder="First Name" size="30" maxlength="20" /></p>
 <p><input type="text" name="last_name" placeholder="Last Name" size="30" maxlength="20" /></p>
 <p><input type="text" name="email" placeholder="Email Address" size="30" maxlength="80"  /> </p>
@@ -63,9 +56,4 @@ $content[] = <<<HTML
 <p><input type="submit" name="submit" value="Register" /></p>
 <input type="hidden" name="submitted" value="TRUE"/>
 </form>
-HTML;
-
-$page->setContent($content);
-$site->render();
-
-?>
+';
