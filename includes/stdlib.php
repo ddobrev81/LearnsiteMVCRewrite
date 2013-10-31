@@ -1,5 +1,9 @@
 <?php #stdlib.php
 
+function __autoload($class) {
+    $filename = "./classes/".$class.".php";
+    require_once ($filename);
+}
 
 function initialise_site(csite $site) {
 	$site->addHeader("./includes/header.php");

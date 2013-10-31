@@ -1,0 +1,14 @@
+get email
+
+SELECT email FROM users WHERE user_id = :uid
+
+add new blogpost
+
+INSERT INTO 
+blogpost(
+     user_id, 
+     post_id,
+     title,
+     body,
+     timestamp) 
+VALUES (:uid, :pid, :ttl, :bdy, NOW())

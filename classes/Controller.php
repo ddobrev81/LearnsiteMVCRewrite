@@ -1,72 +1,12 @@
-<?php //class declarations
+<?php
 
-class cpage {
-		private $title;
-		private $content = array();
+/**
+ * Description of Controller
+ *
+ * @author Dodo
+ */
 
-		public function __construct($title) {
-			$this->title = $title;
-		}
-
-		public function __destruct() {
-
-		}
-                
-                public function setContent($content) {
-			$this->content = $content;
-		}
-                
-		public function render() {
-			echo "<H1>{$this->title}</H1>";
-			foreach($this->content as $cont){
-				echo $cont;
-			}
-		}
-
-		
-	}	
-
-class csite {
-	private $headers;
-	private $footers;
-	private $page;
-
-	public function __construct() {
-		$this->headers = array();
-		$this->footers = array();
-	}
-
-	public function __destruct() {
-
-	}
-
-	public function render() {
-		foreach ($this->headers as $header) {
-			include $header;
-		}
-
-		$this->page->render();
-
-		foreach ($this->footers as $footer) {
-			include $footer;
-		}
-	}
-
-	public function addHeader($file) {
-		$this->headers[] = $file;
-	}
-
-	public function addFooter($file) {
-		$this->footers[] = $file;
-	}
-
-	public function setPage(cpage $page) {
-		$this->page = $page;
-	}
-
-}
-
-class Controller {
+ class Controller {
     
     static public function router($page) {
         switch ($page) {
@@ -143,5 +83,3 @@ class Controller {
         
     }
 }
-
-?>
