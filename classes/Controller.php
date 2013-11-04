@@ -74,21 +74,31 @@
                 break;
 
             case "shoutbox2":
-                $controller_file = "apps/$page/controller.php";
-                require $controller_file;
-                switch( $_GET['action'])
-                {
-                    case 'display':
-                    case 'post':
-                        $action = $_GET['action'];
-                        break;
+                require "apps/$page/controller.php";
+                $controller_class = "controller_" . $page;
+                $controller = new $controller_class();
 
-                    default:
-                        $action = "display";
-                }
+                /**
+                 * You can also do this, but some people question the security of it
+                 **/
 
-                $controller = new controller_shoutbox2();
-                return $controller -> $action();
+                 /**
+                  * controller::index is the default action. make sure it exists.
+                  **/
+                 $action = ( isset($_GET['action']) ) ? $_GET['action'] : "index";
+
+                 /**
+                  * if $action exists (eg, is a method of the controller)
+                  **/
+                 if( !is_callable([$controller, $action]))
+                 {
+                     /**
+                      * Throw some error page here
+                      **/
+                      return array("");
+                 }
+
+                 return $controller -> $action();
             
             default:
                 include 'apps/main/main.php';

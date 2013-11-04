@@ -30,6 +30,11 @@ class controller_shoutbox2
        
     }
 
+    function index()
+    {
+        return $this -> display();
+    }
+
     function display()
     {
             include "includes/dbc.php";
