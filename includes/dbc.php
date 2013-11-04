@@ -1,8 +1,10 @@
 <?php #dbc.php
+global $site_config;
 
-$dbc = "mysql:host=localhost;dbname=learnsite";
-$login="root";
-$password="";
+$dbc = "mysql:host=" . $site_config['db']['host'] . ";dbname=" . $site_config['db']['database'];
+$login= $site_config['db']['user'];
+$password=$site_config['db']['password'];
+
 $opt = array(
     // any occurring errors wil be thrown as PDOException
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -11,5 +13,4 @@ $opt = array(
 );
 
 $pdo = new PDO($dbc, $login, $password, $opt);
-
 ?>

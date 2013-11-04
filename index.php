@@ -2,6 +2,7 @@
 session_start();
 error_reporting(E_ALL ^ E_NOTICE); 
 
+include 'includes/config.php';
 include 'includes/stdlib.php';
 
 if(!isset($_GET['page'])) {
