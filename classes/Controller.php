@@ -74,6 +74,23 @@
                 include './apps/users/viewusers.php';
                 return $content;
                 break;
+
+            case "shoutbox2":
+                $controller_file = "apps/$page/controller.php";
+                require $controller_file;
+                switch( $_GET['action'])
+                {
+                    case 'display':
+                    case 'post':
+                        $action = $_GET['action'];
+                        break;
+
+                    default:
+                        $action = "display";
+                }
+
+                $controller = new controller_shoutbox2();
+                return $controller -> $action();
             
             default:
                 include 'apps/main/main.php';
