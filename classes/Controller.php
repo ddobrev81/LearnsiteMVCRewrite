@@ -10,8 +10,18 @@
     
     static public function router($page) {
         switch ($page) {
+            /**
+             * Might as well not repeat ourselves.
+             * This isn't insecure because $page can't be anything else than
+             * what's in this list
+             **/
             case "main":
-                include 'apps/main/main.php';
+            case "shoutbox":
+            case "showquotes":
+            case "addquote":
+            case "underconstruction":
+            case "main":
+                include "apps/$page/$page.php";
                 return $content;
                 break;
             
