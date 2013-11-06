@@ -12,9 +12,7 @@ $site = new csite();
 initialise_site($site);
 $page = new cpage($_GET['page']);
 $site->setPage($page);
-// ..Im still working on it!
-$content = Controller::router($_GET['page']);
+$controller = new Controller($_GET['page']);
+$content = $controller->getContent();
 $page->setContent($content);
 $site->render();
-
-?>

@@ -12,4 +12,4 @@ if(!isset($_SESSION['user_id'])) {
     session_destroy();
     setcookie('PHPSESSID', '', time()-3600, '/','',0,0);
 }
-$content[] = "<p>You are now logged out!</p>";
+$cContent[] = "<p>You are now logged out!</p>";

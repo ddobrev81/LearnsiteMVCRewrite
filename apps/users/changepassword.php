@@ -3,23 +3,23 @@
 
 if( isset($_POST['submitted'])) {
 	if( empty($_POST['email'])) {
-		$content[]='You did not enter your email address';
+		$cContent[]='You did not enter your email address';
 	} else {
 		$e = trim($_POST['email']);
 	}
 	if(empty($_POST['pass'])) {
-		$content[]='You did not enter a password!';
+		$cContent[]='You did not enter a password!';
 	} else {
 		$p = trim($_POST['pass']);
 	}
 	if(!empty($_POST['pass1'])) {
 		if($_POST['pass1'] != $_POST['pass2']) {
-			$content[]='Your new passwords doesnt match!';
+			$cContent[]='Your new passwords doesnt match!';
 		} else {
 			$np = trim($_POST['pass1']);
 		}
 	} else {
-		$content[]='You didnt enter a password!';
+		$cContent[]='You didnt enter a password!';
 	}
 	require_once './includes/dbc.php';
 	if (empty($errors)) { 
@@ -36,17 +36,17 @@ if( isset($_POST['submitted'])) {
 			$params = array ('np' => $np, 'id' => $id);
 			$ps->execute($params);
 			if ($ps->rowCount() == 1) { // If it ran OK.
-				$content[] = '<h1>Thank you!</h1>
+				$cContent[] = '<h1>Thank you!</h1>
 				<p>Your password has been updated.</p><p><br /></p>';	
 			} else { 
 				// Public message:
-				$content[] = '<h1>System Error</h1>
+				$cContent[] = '<h1>System Error</h1>
 				<p class="error">Your password could not be changed due to a system error. We apologize for any inconvenience.</p>'; 
 			}
 		}
 	}
 }
-$content[] = '
+$cContent[] = '
 <form action="index.php?page=password" method="post">
 <p><input type="text" name="email" size="30" placeholder="Email Address" maxlength="80" /> </p>
 <p><input type="password" name="pass" size="30" placeholder="Current Password" maxlength="20" /></p>

@@ -17,15 +17,15 @@ if( isset($_POST['submitted'])) {
     }
 }
 if(!empty($errors)) {
-    $content[] = '<h1> Error!</h1>
+    $cContent[] = '<h1> Error!</h1>
     <p class="error"> The following error(s) occurred:<br />
     ';
     foreach($errors as $msg) {
-	$content[]= "- $msg<br />\n";
+	$cContent[]= "- $msg<br />\n";
     }
-    $content[]= '</p><p>Please try again!</p>';
+    $cContent[]= '</p><p>Please try again!</p>';
 }
-$content[] ='
+$cContent[] ='
 <form action="index.php?page=login" method="post">
 	<p><input type="text" name="email" placeholder="Email Address"size=20 maxlength=20 /></p>
 	<p><input type="password" name="pass" placeholder="Password" size=20 maxlength=20 /></p>

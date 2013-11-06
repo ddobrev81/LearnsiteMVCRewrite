@@ -5,7 +5,7 @@ if(isset($_GET['id']) && is_numeric($_GET['id'])) {
 } elseif(($_POST['id']) && is_numeric($_POST['id'])) {
     $id=$_POST['id'];
 } else {
-    $content[] = '<p class="error">This page has been accessed in error.</p>';
+    $cContent[] = '<p class="error">This page has been accessed in error.</p>';
     exit();
 }
 
@@ -17,12 +17,12 @@ if(isset($_POST['submitted']))	{
 	$params = array('id' =>$id);
 	$ps->execute($params);
 	if($ps->rowCount() == 1) {
-            $content[] = '<p>The user has been deleted!</p>';
+            $cContent[] = '<p>The user has been deleted!</p>';
 	} else {
-            $content[] =  '<p class="error">The user could not be deleted due to a system error.</p>';
+            $cContent[] =  '<p class="error">The user could not be deleted due to a system error.</p>';
 	}
     } else {
-        $content[] =  '<p>The user has NOT been deleted.</p>';
+        $cContent[] =  '<p>The user has NOT been deleted.</p>';
     }
 } else {
     $q = "SELECT CONCAT(last_name, ' ,', first_name) FROM users WHERE user_id=:id";
@@ -31,7 +31,7 @@ if(isset($_POST['submitted']))	{
     $ps->execute($params);
     if($ps->rowCount() == 1) {
 	$row = $ps->fetch(PDO::FETCH_NUM);
-	$content[] = '
+	$cContent[] = '
 			<form action="index.php?page=deleteuser" method="post">
 			<h3>Name: '.$row[0].'</h3>
 			<p>Are you sure you want to delete this user?<br />
@@ -43,6 +43,6 @@ if(isset($_POST['submitted']))	{
 			</form>
 			';
     } else {
-        $content[] = '<p class="error">This page has been accessed in error.</p>';
+        $cContent[] = '<p class="error">This page has been accessed in error.</p>';
     }
 }
