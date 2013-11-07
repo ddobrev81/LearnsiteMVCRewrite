@@ -2,6 +2,8 @@
 /**
  * Description of BlogPost
  *
+ * work in progress
+ * 
  * @author Dodo
  */
 class BlogPost {
