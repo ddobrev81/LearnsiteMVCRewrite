@@ -73,7 +73,7 @@
      
 
 
-     static public function getContent() {
+     public function getContent() {
      
          return $this->cContent;
      }

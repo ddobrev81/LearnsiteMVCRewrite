@@ -42,7 +42,7 @@ $q = "SELECT last_name, first_name, DATE_FORMAT(registration_date, '%M %d, %Y') 
 $ps = $pdo->prepare($q);
 $ps->execute();
 
-$cContent[] = '<table align="center" cellspacing="0" cellpadding="5" width="75%">
+$this->cContent[] = '<table align="center" cellspacing="0" cellpadding="5" width="75%">
 		<tr>
 		<td align="left"><b>Edit</b></td>
 		<td align="left"><b>Delete</b></td>
@@ -54,7 +54,7 @@ $bg = '#eeeeee';
 while ($row = $ps->fetch(PDO::FETCH_ASSOC)) {
 		$bg = ($bg=='#eeeeee' ? '#ffffff' : '#eeeeee');
 		
-		$cContent[] = '<tr bgcolor="' . $bg . '">
+		$this->cContent[] = '<tr bgcolor="' . $bg . '">
 		<td align="left"><a href="index.php?page=edituser&id='.$row['user_id'].'">Edit</a></td>
 		<td align="left"><a href="index.php?page=deleteuser&id='.$row['user_id'].'">Delete</a></td>
 		<td align="left">' . $row['last_name'] .'</td>
@@ -62,22 +62,22 @@ while ($row = $ps->fetch(PDO::FETCH_ASSOC)) {
 		<td align="left">' . $row['dr'] . '</td></tr>
 		';
 }
-$cContent[] = '</table>';
+$this->cContent[] = '</table>';
 if($pages>1) {
-		$cContent[] = '<br /><p>';
+		$this->cContent[] = '<br /><p>';
 		$current_page = ($start/$display)+1;
 		if($current_page != 1){
-				$cContent[] = '<a href="index.php?page=viewusers&s=' .($start - $display) . '&p=' . $pages . '&sort=' . $sort . '">Previous</a> ';
+				$this->cContent[] = '<a href="index.php?page=viewusers&s=' .($start - $display) . '&p=' . $pages . '&sort=' . $sort . '">Previous</a> ';
 		}
 		for($i=1; $i<=$pages; $i++) {
                     if($i != $current_page) {
-			$cContent[] = '<a href="index.php?page=viewusers&s=' .(($display * ($i - 1))) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';					
+			$this->cContent[] = '<a href="index.php?page=viewusers&s=' .(($display * ($i - 1))) . '&p=' . $pages . '&sort=' . $sort . '">' . $i . '</a> ';					
                     } else {
-                        $cContent[] = $i.' ';
+                        $this->cContent[] = $i.' ';
                     }
 		}
 		if($current_page != $pages) {
-                    $cContent[] = '<a href="index.php?page=viewusers&s=' .($start + $display) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
+                    $this->cContent[] = '<a href="index.php?page=viewusers&s=' .($start + $display) . '&p=' . $pages . '&sort=' . $sort . '">Next</a>';
 		}
-		$cContent[] = '</p>';
+		$this->cContent[] = '</p>';
 }

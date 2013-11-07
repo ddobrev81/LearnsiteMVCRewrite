@@ -43,5 +43,3 @@ function check_login($pdo, $email='', $pass='') {
     }
     return array(false,$errors);
 }
-
-?>

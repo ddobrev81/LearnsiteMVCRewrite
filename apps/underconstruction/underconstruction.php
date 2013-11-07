@@ -1,5 +1,5 @@
 <?php #index.php
 
 
-$cContent[] ='<br>Under Contruction! Coming Soon™';
+$this->cContent[] ='<br>Under Contruction! Coming Soon™';
 

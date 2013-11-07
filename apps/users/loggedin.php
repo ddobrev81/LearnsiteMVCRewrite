@@ -8,6 +8,6 @@ if(!isset($_SESSION['user_id'])) {
 }
 
 
-$cContent[] = '	<p>You are now logged in, '.$_SESSION['first_name'].'!</p>
+$this->cContent[] = '	<p>You are now logged in, '.$_SESSION['first_name'].'!</p>
 		<p><a href="index.php?page=logout">Logout</a></p>
 ';

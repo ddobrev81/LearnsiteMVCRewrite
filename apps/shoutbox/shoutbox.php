@@ -6,17 +6,17 @@ if(isset($_SESSION['user_id'])) { //check login
     if(isset($_POST['submitted'])) { //check for POST
         //check user input
         if(empty($_POST['subject']) or (mb_strlen($_POST['subject'])>100)) {
-            $cContent[]='Enter a message subject; maximum of 100 characters.';
+            $this->cContent[]='Enter a message subject; maximum of 100 characters.';
         } else {
             $messageSubject = trim($_POST['subject']);
         }
         if(empty($_POST['body']) or (mb_strlen($_POST['body'])>500)) {
-            $cContent[]='Enter a message body; maximum of 500 characters.';
+            $this->cContent[]='Enter a message body; maximum of 500 characters.';
         } else {
             $messageBody = trim($_POST['body']);
         }
         // user input is ok-ish > add message
-        if(empty($cContent)) {
+        if(empty($this->cContent)) {
             require_once './includes/dbc.php';
             $q = "INSERT INTO shoutbox (user_id, timestamp, subject, body) VALUES (:uid, NOW(), :sbj, :bdy)";
             $ps = $pdo->prepare($q);
@@ -34,9 +34,9 @@ if(isset($_SESSION['user_id'])) { //check login
             $ps = $pdo->prepare($q);
             $ps->execute();
             // generate html table for each message
-            $cContent[]='<div style="float:left; width:50%"><br><br>';
+            $this->cContent[]='<div style="float:left; width:50%"><br><br>';
             while ($shout = $ps->fetch(PDO::FETCH_ASSOC)) {
-                  $cContent[]='
+                  $this->cContent[]='
                     <table cellspacing="0" style="border:1px solid indigo;width: 95%; word-wrap:break-word; table-layout: fixed;">
                     <tr bgcolor="#C9C9C9"><td><b>'.$shout['message_id'].'.  '.$shout['subject'].'</b></td></tr>
                     <tr bgcolor="#E9E9E9"><td> '.$shout['body'].'</td></tr>
@@ -47,7 +47,7 @@ if(isset($_SESSION['user_id'])) { //check login
                     ';
             }
             //the rest of the html 
-            $cContent[]='
+            $this->cContent[]='
             </div>
             <div style="float:right; width:50%">
             <br>
@@ -60,6 +60,6 @@ if(isset($_SESSION['user_id'])) { //check login
             </div>
             ';
 } else { // login reminder
-	$cContent[]='<p>You have to be logged in to view/post!</p>';
+	$this->cContent[]='<p>You have to be logged in to view/post!</p>';
 }
 
